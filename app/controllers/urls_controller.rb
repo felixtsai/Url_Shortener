@@ -14,7 +14,7 @@ class UrlsController < ApplicationController
   # GET /urls/1.json
   def show
     @url = Url.find(params[:id])
-
+    @url.increment(:counter).save
     redirect_to "#{@url.link}"
 
     # respond_to do |format|
