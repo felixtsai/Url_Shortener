@@ -1,5 +1,5 @@
 class Url < ActiveRecord::Base
-  attr_accessible :link, :short_link
+  attr_accessible :link, :short_link, :vanity_url
 
   def generate_short_url
     @short_link = ""
@@ -13,8 +13,8 @@ class Url < ActiveRecord::Base
     if input.to_i != 0
       super
     else
-      find_by_short_link(input)
-    end
+      find_by_vanity_url(input) || find_by_short_link(input)
+    end #end if
   end #end self.find
 
 end
